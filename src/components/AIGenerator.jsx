@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaRobot, FaFilePdf, FaDownload, FaSync } from 'react-icons/fa';
+import '../Styles/AIGenerator.css';
 
 const AIGenerator = () => {
   const [subject, setSubject] = useState('Computer Science');
@@ -7,37 +8,169 @@ const AIGenerator = () => {
   const [difficulty, setDifficulty] = useState('Medium');
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedPaper, setGeneratedPaper] = useState(null);
+  const [error, setError] = useState(null);
 
   const subjects = ['Computer Science', 'Mathematics', 'Physics', 'Chemistry', 'Biology', 'Business Studies'];
   const examTypes = ['Mid-term', 'Final Exam', 'Quiz', 'Entrance Test', 'Competitive Exam'];
   const difficultyLevels = ['Easy', 'Medium', 'Hard', 'Advanced'];
 
-  const handleGenerate = () => {
-    setIsGenerating(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      const samplePaper = {
-        id: 1,
-        title: `${subject} ${examType} Paper`,
-        difficulty: difficulty,
-        questions: [
-          "Explain the concept of recursion with an example.",
-          "Differentiate between procedural and object-oriented programming.",
-          "Write an algorithm for binary search.",
-          "What is time complexity? Calculate for bubble sort.",
-          "Explain the client-server architecture with a diagram."
-        ],
-        generatedAt: new Date().toLocaleString()
-      };
+  const generateWithBackend = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/generate-paper', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          subject,
+          examType,
+          difficulty
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
       
-      setGeneratedPaper(samplePaper);
+      // Extract and parse the response
+      const generatedText = data.candidates[0].content.parts[0].text;
+      
+      try {
+        const jsonMatch = generatedText.match(/\{[\s\S]*\}/);
+        const jsonString = jsonMatch ? jsonMatch[0] : generatedText;
+        const parsedData = JSON.parse(jsonString);
+        
+        const paper = {
+          id: Date.now(),
+          title: parsedData.title || `${subject} ${examType} Paper`,
+          subject: parsedData.subject || subject,
+          difficulty: parsedData.difficulty || difficulty,
+          questions: parsedData.questions || generateFallbackQuestions(),
+          instructions: parsedData.instructions || 'Answer all questions. Show your work where necessary.',
+          generatedAt: new Date().toLocaleString()
+        };
+        
+        setGeneratedPaper(paper);
+        
+      } catch (parseError) {
+        console.error('Error parsing response:', parseError);
+        generateFallbackPaper();
+      }
+      
+    } catch (err) {
+      console.error('Error calling backend:', err);
+      setError(`Failed to generate paper: ${err.message}. Using fallback generation.`);
+      generateFallbackPaper();
+    }
+  };
+
+  const generateFallbackQuestions = () => {
+    const fallbackQuestions = {
+      'Computer Science': [
+        "Explain the concept of recursion with an example.",
+        "Differentiate between procedural and object-oriented programming.",
+        "Write an algorithm for binary search.",
+        "What is time complexity? Calculate for bubble sort.",
+        "Explain the client-server architecture with a diagram."
+      ],
+      'Mathematics': [
+        "Solve the quadratic equation: x² - 5x + 6 = 0",
+        "Differentiate between mean, median and mode.",
+        "Prove that the sum of angles in a triangle is 180 degrees.",
+        "Calculate the derivative of f(x) = sin(x) + cos(x)",
+        "Explain the concept of limits with an example."
+      ],
+      'Physics': [
+        "State Newton's laws of motion with examples.",
+        "Explain the difference between speed and velocity.",
+        "Calculate the work done when a 5kg object is lifted 2m high.",
+        "Describe the photoelectric effect.",
+        "What is Ohm's law? Derive the formula."
+      ],
+      'Chemistry': [
+        "Define mole concept with examples.",
+        "Differentiate between ionic and covalent bonds.",
+        "Write the electronic configuration of carbon atom.",
+        "Explain the process of electrolysis.",
+        "Balance the chemical equation: H2 + O2 → H2O"
+      ],
+      'Biology': [
+        "Explain the process of photosynthesis.",
+        "Differentiate between mitosis and meiosis.",
+        "Describe the human digestive system.",
+        "What is DNA replication? Explain the process.",
+        "Explain the structure and function of cell membrane."
+      ],
+      'Business Studies': [
+        "Explain the functions of management.",
+        "Differentiate between goods and services.",
+        "What is SWOT analysis? Provide an example.",
+        "Explain the concept of supply and demand.",
+        "Describe the marketing mix (4Ps)."
+      ]
+    };
+    
+    return fallbackQuestions[subject] || fallbackQuestions['Computer Science'];
+  };
+
+  const generateFallbackPaper = () => {
+    const samplePaper = {
+      id: Date.now(),
+      title: `${subject} ${examType} Paper`,
+      difficulty: difficulty,
+      questions: generateFallbackQuestions(),
+      instructions: 'Answer all questions. Write your answers in the space provided.',
+      generatedAt: new Date().toLocaleString(),
+      isFallback: true
+    };
+    
+    setGeneratedPaper(samplePaper);
+  };
+
+  const handleGenerate = async () => {
+    setIsGenerating(true);
+    setError(null);
+    
+    // Try backend first, then fallback
+    try {
+      await generateWithBackend();
+    } catch (err) {
+      console.error('Backend failed, using fallback:', err);
+      generateFallbackPaper();
+    } finally {
       setIsGenerating(false);
-    }, 1500);
+    }
   };
 
   const handleDownload = () => {
-    alert('Question paper downloaded as PDF!');
+    if (!generatedPaper) return;
+    
+    const content = `
+      ${generatedPaper.title}
+      Subject: ${subject}
+      Difficulty: ${difficulty}
+      Exam Type: ${examType}
+      Generated: ${generatedPaper.generatedAt}
+      
+      ${generatedPaper.instructions}
+      
+      Questions:
+      ${generatedPaper.questions.map((q, i) => `${i + 1}. ${q}`).join('\n')}
+    `;
+    
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${subject.replace(/\s+/g, '_')}_${examType.replace(/\s+/g, '_')}_Paper.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    alert('Question paper downloaded as text file!');
   };
 
   return (
@@ -47,6 +180,15 @@ const AIGenerator = () => {
         <p className="section-subtitle">
           Create custom practice papers for any subject and exam type in seconds using our advanced AI.
         </p>
+        
+        <div className="api-notice">
+          <p>🔧 <strong>Note:</strong> For full AI capabilities, run the backend server.</p>
+          <p className="api-instructions">
+            1. Create a backend server (see instructions in code)<br/>
+            2. Add your Gemini API key to the backend<br/>
+            3. Start both frontend and backend servers
+          </p>
+        </div>
         
         <div className="generator-container">
           <div className="generator-controls card">
@@ -121,11 +263,25 @@ const AIGenerator = () => {
               </div>
             </div>
             
+            {error && (
+              <div className="error-message">
+                <p>⚠️ {error}</p>
+              </div>
+            )}
+            
             {generatedPaper ? (
               <div className="paper-content">
                 <div className="paper-meta">
                   <p><strong>Exam Type:</strong> {examType}</p>
                   <p><strong>Generated:</strong> {generatedPaper.generatedAt}</p>
+                  {generatedPaper.isFallback && (
+                    <p className="fallback-notice">⚠️ Using fallback generation (no backend connection)</p>
+                  )}
+                </div>
+                
+                <div className="paper-instructions">
+                  <h4>Instructions:</h4>
+                  <p>{generatedPaper.instructions}</p>
                 </div>
                 
                 <div className="questions-list">
@@ -139,7 +295,7 @@ const AIGenerator = () => {
                 
                 <div className="output-actions">
                   <button className="btn btn-primary" onClick={handleDownload}>
-                    <FaDownload /> Download PDF
+                    <FaDownload /> Download Paper
                   </button>
                   <button className="btn btn-secondary" onClick={handleGenerate}>
                     <FaSync /> Generate Another
@@ -151,234 +307,14 @@ const AIGenerator = () => {
                 <FaFilePdf className="placeholder-icon" />
                 <p>Your AI-generated question paper will appear here</p>
                 <p className="placeholder-sub">Select your preferences and click "Generate"</p>
+                <p className="placeholder-hint">
+                  <small>Currently using fallback questions. Enable backend for real AI generation.</small>
+                </p>
               </div>
             )}
           </div>
         </div>
       </div>
-      
-      <style jsx>{`
-        .ai-generator {
-          background-color: #fffff;
-          margin-left:30px;
-        }
-        .container{
-          padding:0px;
-          margin:0px;
-          width:100vw;
-        }
-        .generator-container {
-          display: grid;
-          grid-template-columns: 1fr 1.5fr;
-          gap: 30px;
-        }
-        
-        .generator-controls {
-          padding: 30px;
-        }
-        
-        .control-group {
-          margin-bottom: 25px;
-        }
-        
-        .control-group label {
-          display: block;
-          margin-bottom: 8px;
-          font-weight: 600;
-          color: var(--dark-color);
-        }
-        
-        .dropdown select {
-          width: 100%;
-          padding: 12px 15px;
-          border: 1px solid #ddd;
-          border-radius: 8px;
-          font-size: 1rem;
-          background-color: white;
-          cursor: pointer;
-        }
-        
-        .difficulty-buttons {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-        }
-        
-        .difficulty-btn {
-          padding: 8px 15px;
-          border: 1px solid #ddd;
-          border-radius: 20px;
-          background: white;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-        
-        .difficulty-btn.active {
-          background-color: var(--primary-color);
-          color: white;
-          border-color: var(--primary-color);
-        }
-        
-        .generate-btn {
-          width: 100%;
-          margin-top: 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-        }
-        
-        .spin {
-          animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        
-        .generator-output {
-          padding: 30px;
-        }
-        
-        .output-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 25px;
-          padding-bottom: 15px;
-          border-bottom: 1px solid #eee;
-        }
-        
-        .paper-info {
-          display: flex;
-          gap: 10px;
-        }
-        
-        .paper-subject, .paper-difficulty {
-          padding: 5px 15px;
-          border-radius: 20px;
-          font-size: 0.9rem;
-          font-weight: 600;
-        }
-        
-        .paper-subject {
-          background-color: rgba(67, 97, 238, 0.1);
-          color: var(--primary-color);
-        }
-        
-        .paper-difficulty {
-          background-color: rgba(76, 201, 240, 0.1);
-          color: var(--accent-color);
-        }
-        
-        .paper-meta {
-          display: flex;
-          justify-content: space-between;
-          margin-bottom: 20px;
-          padding-bottom: 15px;
-          border-bottom: 1px dashed #ddd;
-        }
-        
-        .questions-list {
-          margin-bottom: 25px;
-        }
-        
-        .questions-list ol {
-          margin-left: 20px;
-          margin-top: 10px;
-        }
-        
-        .questions-list li {
-          margin-bottom: 10px;
-          padding-left: 10px;
-        }
-        
-        .output-actions {
-          display: flex;
-          gap: 15px;
-        }
-        
-        .output-placeholder {
-          text-align: center;
-          padding: 50px 20px;
-          color: var(--gray-color);
-        }
-        
-        .placeholder-icon {
-          font-size: 3rem;
-          margin-bottom: 20px;
-          color: #ddd;
-        }
-        
-        .placeholder-sub {
-          font-size: 0.9rem;
-          margin-top: 5px;
-        }
-        
-        @media (max-width: 1024px) {
-          .generator-container {
-            grid-template-columns: 1fr;
-            gap: 25px;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .generator-controls,
-          .generator-output {
-            padding: 25px 20px;
-          }
-          
-          .output-header {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 15px;
-          }
-          
-          .paper-meta {
-            flex-direction: column;
-            gap: 10px;
-            width: 100%;
-          }
-          
-          .output-actions {
-            flex-direction: column;
-            width: 100%;
-          }
-          
-          .output-actions .btn {
-            width: 100%;
-          }
-        }
-
-        @media (max-width: 576px) {
-          .generator-controls,
-          .generator-output {
-            padding: 20px 15px;
-          }
-          
-          .difficulty-buttons {
-            flex-direction: column;
-          }
-          
-          .difficulty-btn {
-            width: 100%;
-          }
-          
-          .paper-meta {
-            flex-direction: column;
-            gap: 10px;
-          }
-          
-          .output-actions {
-            flex-direction: column;
-          }
-          
-          .placeholder-icon {
-            font-size: 2.5rem;
-          }
-        }
-      `}</style>
     </section>
   );
 };

@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Massachusetts Institute of Technology",
+    "location": "Cambridge, Massachusetts",
+    "country": "USA",
+    "type": "Private",
+    "ranking": 1,
+    "acceptanceRate": 7,
+    "tuition": 55000,
+    "courses": ["Engineering", "Computer Science", "Mathematics", "Physics"],
+    "specializations": ["Artificial Intelligence", "Robotics", "Quantum Computing"],
+    "image": "https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    "website": "https://www.mit.edu",
+    "description": "World-renowned for its cutting-edge research and innovation in technology and engineering.",
+    "deadlines": {
+      "fall": "January 1, 2024",
+      "spring": "October 15, 2023",
+      "summer": "March 1, 2024"
+    },
+    "applicationFee": 75,
+    "requirements": ["SAT/ACT Scores", "Letters of Recommendation", "Personal Statement", "Transcripts"],
+    "campusLife": {
+      "students": 12000,
+      "faculty": 2000,
+      "campusSize": "168 acres",
+      "clubs": 500
+    },
+    "scholarships": ["Need-based", "Merit-based", "International"],
+    "contact": {
+      "email": "admissions@mit.edu",
+      "phone": "+1-617-253-1000",
+      "address": "77 Massachusetts Avenue, Cambridge, MA 02139"
+    },
+    "programs": [
+      {
+        "name": "Bachelor of Science in Computer Science",
+        "duration": "4 years",
+        "fee": 55000,
+        "requirements": ["High School Diploma", "SAT Score 1500+", "Math Level 4"]
+      },
+      {
+        "name": "Master of Engineering",
+        "duration": "2 years",
+        "fee": 58000,
+        "requirements": ["Bachelor's Degree", "GRE Score", "3 Letters of Recommendation"]
+      }
+    ]
+  }
+]
