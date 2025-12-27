@@ -1,5 +1,6 @@
 import "../Styles/Authform.css";
 import { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 
 function Authform() {
   const [isRegister, setIsRegister] = useState(false);
@@ -22,6 +23,19 @@ function Authform() {
       setIsLoading(false);
       // Reset form or show success message
     }, 2000);
+  };
+
+  // Handle Google authentication
+  const handleGoogleAuth = () => {
+    setIsLoading(true);
+    
+    // Simulate Google OAuth flow
+    setTimeout(() => {
+      setIsLoading(false);
+      alert("Google authentication successful!");
+      // In real app, you would redirect to Google OAuth
+      // window.location.href = "YOUR_GOOGLE_OAUTH_URL";
+    }, 1500);
   };
 
   return (
@@ -61,6 +75,12 @@ function Authform() {
             <span className="error-message"></span>
           </div>
 
+          <div className="forgot-password">
+            <a href="#" onClick={(e) => e.preventDefault()}>
+              Forgot Password?
+            </a>
+          </div>
+
           <button type="submit" className="btn" disabled={isLoading}>
             {isLoading ? (
               <>
@@ -71,6 +91,23 @@ function Authform() {
               "Login"
             )}
           </button>
+
+          {/* Google Login Button */}
+          <div className="google-auth">
+            <div className="divider">
+              <span>Or continue with</span>
+            </div>
+            <button 
+              type="button" 
+              className="btn-google"
+              onClick={handleGoogleAuth}
+              disabled={isLoading}
+            >
+              <FcGoogle className="google-icon" />
+              Sign in with Google
+            </button>
+          </div>
+
           <div className="logreg-link">
             <p>
               Don&apos;t have an account?{" "}
@@ -95,18 +132,6 @@ function Authform() {
             />
             <label htmlFor="regUsername">Username</label>
             <i className="bx bxs-user"></i>
-            <span className="error-message"></span>
-          </div>
-
-          <div className="input-box">
-            <input
-              id="regMobile"
-              type="tel"
-              placeholder=" "
-              required
-            />
-            <label htmlFor="regMobile">Mobile Number</label>
-            <i className="bx bxs-phone"></i>
             <span className="error-message"></span>
           </div>
 
@@ -151,6 +176,23 @@ function Authform() {
               "Register"
             )}
           </button>
+
+          {/* Google Sign Up Button */}
+          <div className="google-auth">
+            <div className="divider">
+              <span>Or sign up with</span>
+            </div>
+            <button 
+              type="button" 
+              className="btn-google"
+              onClick={handleGoogleAuth}
+              disabled={isLoading}
+            >
+              <FcGoogle className="google-icon" />
+              Sign up with Google
+            </button>
+          </div>
+
           <div className="logreg-link">
             <p>
               Already have an account?{" "}
