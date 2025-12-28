@@ -1,31 +1,17 @@
-import React from "react";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Features from "./components/Features";
-import AIGenerator from "./components/AIGenerator";
-import HowItWorks from "./components/HowItWorks";
-import Testimonials from "./components/Testimonials";
-import CTASection from "./components/CTASection";
-import Footer from "./components/Footer";
-import "./App.css";
-import Authform from "./components/Authform";
-import Profile from "./components/Profile";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import CollegeList from './components/CollegeList';
+import CollegeDetails from './components/CollegeDetails';
+
 
 function App() {
   return (
-    <div className="App">
-      {/* <Profile/> */}
-      {/* <Header />
-      <Hero />
-      <Features />
-      <AIGenerator />
-      <HowItWorks />
-      <Testimonials />
-      <CTASection />
-      <Footer /> */}
-      <Authform/>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<CollegeList />} />
+        <Route path="/colleges" element={<CollegeList />} />
+        <Route path="/college/:id" element={<CollegeDetails />} />
+      </Routes>
+    </Router>
   );
 }
-
-export default App;
+export default App

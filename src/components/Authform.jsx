@@ -12,6 +12,7 @@ import {
 function Authform() {
   const [isRegister, setIsRegister] = useState(false);
   const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showLoginEmail, setShowLoginEmail] = useState(false);
   const [showRegisterPassword, setShowRegisterPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -135,51 +136,70 @@ function Authform() {
 
   return (
     <div className="login-page-container">
-      <div className={`wrapper ${isRegister ? "active" : ""}`}>
-        {/* ---------------- LOGIN ---------------- */}
+      <div className={`wrapper ${isRegister ? "active" : ""} black-white-theme`}>
+        {/* Login Form */}
         <div className="form-box login">
-          <h2>Login</h2>
-
-          <form onSubmit={handleSubmit}>
+          <h2 className="animation">Login</h2>
+          <form className="animation" onSubmit={handleSubmit}>
             <div className="input-box">
               <input
-                type="email"
-                value={loginEmail}
-                onChange={(e) => setLoginEmail(e.target.value)}
+                id="loginEmail"
+                type={showLoginEmail ? "text" : "Email"}
+                placeholder=" "
                 required
               />
-              <label>Email</label>
+              <label htmlFor="loginEmail">Email</label>
+              <i className="bx bxs-lock-alt"></i>
+              <button
+                type="button"
+                className="toggle"
+                onClick={() => setShowLoginEmail(!showLoginEmail)}
+              ></button>
+                <i className={`bx ${showLoginEmail ? "bx-hide" : "bx-show"}`}></i>
             </div>
 
             <div className="input-box">
               <input
+                id="loginPassword"
                 type={showLoginPassword ? "text" : "password"}
-                value={loginPassword}
-                onChange={(e) => setLoginPassword(e.target.value)}
+                placeholder=" "
                 required
               />
-              <label>Password</label>
+              <label htmlFor="loginPassword">Password</label>
+              <i className="bx bxs-lock-alt"></i>
               <button
                 type="button"
                 className="toggle-password"
-                onClick={() => setShowLoginPassword((p) => !p)}
-                disabled={isLoading}
+                onClick={() => setShowLoginPassword(!showLoginPassword)}
               >
-                {showLoginPassword ? "Hide" : "Show"}
+                <i className={`bx ${showLoginPassword ? "bx-hide" : "bx-show"}`}></i>
               </button>
             </div>
 
+            <div className="forgot-password">
+              <a href="#" onClick={(e) => e.preventDefault()}>
+                Forgot Password?
+              </a>
+            </div>
+
             <button type="submit" className="btn" disabled={isLoading}>
-              {isLoading ? "Logging in..." : "Login"}
+              {isLoading ? (
+                <>
+                  <span className="loading-spinner"></span>
+                  Logging in...
+                </>
+              ) : (
+                "Login"
+              )}
             </button>
 
+            {/* Google Login Button */}
             <div className="google-auth">
               <div className="divider">
                 <span>Or continue with</span>
               </div>
-
-              <button
-                type="button"
+              <button 
+                type="button" 
                 className="btn-google"
                 onClick={handleGoogleAuth}
                 disabled={isLoading}
@@ -192,13 +212,7 @@ function Authform() {
             <div className="logreg-link">
               <p>
                 Don&apos;t have an account?{" "}
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    toggleForm();
-                  }}
-                >
+                <a href="#" onClick={(e) => { e.preventDefault(); toggleForm(); }}>
                   Register
                 </a>
               </p>
@@ -206,50 +220,71 @@ function Authform() {
           </form>
         </div>
 
-        {/* ---------------- REGISTER ---------------- */}
+        {/* Register Form */}
         <div className="form-box register">
-          <h2>Register</h2>
-
-          <form onSubmit={handleSubmit}>
+          <h2 className="animation">Register</h2>
+          <form className="animation" onSubmit={handleSubmit}>
             <div className="input-box">
               <input
-                type="email"
-                value={regEmail}
-                onChange={(e) => setRegEmail(e.target.value)}
+                id="regUsername"
+                type="text"
+                placeholder=" "
                 required
               />
-              <label>Email</label>
+              <label htmlFor="regUsername">Username</label>
+              <i className="bx bxs-user"></i>
+              <span className="error-message"></span>
             </div>
 
             <div className="input-box">
               <input
-                type={showRegisterPassword ? "text" : "password"}
-                value={regPassword}
-                onChange={(e) => setRegPassword(e.target.value)}
+                id="regEmail"
+                type="email"
+                placeholder=" "
                 required
               />
-              <label>Password</label>
+              <label htmlFor="regEmail">Email</label>
+              <i className="bx bxs-envelope"></i>
+              <span className="error-message"></span>
+            </div>
+
+            <div className="input-box">
+              <input
+                id="regPassword"
+                type={showRegisterPassword ? "text" : "password"}
+                placeholder=" "
+                required
+              />
+              <label htmlFor="regPassword">Password</label>
+              <i className="bx bxs-lock-alt"></i>
               <button
                 type="button"
                 className="toggle-password"
-                onClick={() => setShowRegisterPassword((p) => !p)}
-                disabled={isLoading}
+                onClick={() => setShowRegisterPassword(!showRegisterPassword)}
               >
-                {showRegisterPassword ? "Hide" : "Show"}
+                <i className={`bx ${showRegisterPassword ? "bx-hide" : "bx-show"}`}></i>
               </button>
+              <span className="error-message"></span>
             </div>
 
             <button type="submit" className="btn" disabled={isLoading}>
-              {isLoading ? "Registering..." : "Register"}
+              {isLoading ? (
+                <>
+                  <span className="loading-spinner"></span>
+                  Registering...
+                </>
+              ) : (
+                "Register"
+              )}
             </button>
 
+            {/* Google Sign Up Button */}
             <div className="google-auth">
               <div className="divider">
                 <span>Or sign up with</span>
               </div>
-
-              <button
-                type="button"
+              <button 
+                type="button" 
                 className="btn-google"
                 onClick={handleGoogleAuth}
                 disabled={isLoading}
@@ -262,13 +297,7 @@ function Authform() {
             <div className="logreg-link">
               <p>
                 Already have an account?{" "}
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    toggleForm();
-                  }}
-                >
+                <a href="#" onClick={(e) => { e.preventDefault(); toggleForm(); }}>
                   Login
                 </a>
               </p>
@@ -276,18 +305,21 @@ function Authform() {
           </form>
         </div>
 
-        {/* ---------------- INFO TEXT ---------------- */}
+        {/* Info Texts */}
         <div className="info-text login">
-          <h2>Welcome Back!</h2>
-          <p>Login with your personal details to continue.</p>
+          <h2 className="animation">Welcome Back!</h2>
+          <p className="animation">
+            To keep connected with us please login with your personal info.
+          </p>
         </div>
-
         <div className="info-text register">
-          <h2>Hello, Friend!</h2>
-          <p>Enter your details and start your journey with us.</p>
+          <h2 className="animation">Hello, Friend!</h2>
+          <p className="animation">
+            Enter your personal details and start your journey with us.
+          </p>
         </div>
 
-        {/* ---------------- BACKGROUND ---------------- */}
+        {/* Background Animations */}
         <div className="bg-animate"></div>
         <div className="bg-animate2"></div>
       </div>
