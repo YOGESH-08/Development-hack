@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaLinkedin, FaGraduationCap, FaBars, FaTimes } from 'react-icons/fa';
+import { FaGraduationCap, FaBars, FaTimes } from 'react-icons/fa';
 import {Link} from "react-router-dom";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,17 +19,19 @@ const Header = () => {
           
           <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
             <a href="#features">Features</a>
-            <a href="#ai-generator">AI Generator</a>
-            <a href="#how-it-works">How It Works</a>
-            <Link to={`/colleges`} className="apply-btn-card">
-            <a href="#testimonials"></a>
-            </Link>
-            <a href="#contact" className="btn btn-secondary">Get Early Access</a>
+            <Link to="/AiGenerator" style={{textDecoration: 'none', color: 'var(--dark-color)', fontWeight: 500}}>AI Generator</Link>
+            <Link to="/colleges" style={{textDecoration: 'none', color: 'var(--dark-color)', fontWeight: 500}}>Colleges</Link>
+            <Link to="/login" className="btn btn-primary" style={{textDecoration: 'none'}}>Login</Link>
           </div>
           
-          <div className="mobile-menu-btn" onClick={toggleMenu}>
+          <button 
+            className="mobile-menu-btn" 
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+            type="button"
+          >
             {isMenuOpen ? <FaTimes /> : <FaBars />}
-          </div>
+          </button>
         </nav>
       </div>
       
@@ -86,11 +88,24 @@ const Header = () => {
           color: var(--primary-color);
         }
         
+        .nav-links .btn {
+          padding: 8px 20px;
+          font-size: 0.9rem;
+        }
+        
         .mobile-menu-btn {
           display: none;
           font-size: 1.5rem;
           cursor: pointer;
           color: var(--dark-color);
+          background: transparent;
+          border: none;
+          padding: 8px;
+          transition: color 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+          color: var(--primary-color);
         }
         
         @media (max-width: 1024px) {

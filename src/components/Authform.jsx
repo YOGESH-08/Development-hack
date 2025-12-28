@@ -1,13 +1,16 @@
 import "../Styles/Authform.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
 function Authform() {
+  const navigate = useNavigate();
   const [isRegister, setIsRegister] = useState(false);
   const [showLoginPassword, setShowLoginPassword] = useState(false);
   const [showLoginEmail, setShowLoginEmail] = useState(false);
   const [showRegisterPassword, setShowRegisterPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [redirectTo, setRedirectTo] = useState('/AiGenerator'); // Default redirect
 
   // Toggle between login and register forms
   const toggleForm = () => {
@@ -22,8 +25,9 @@ function Authform() {
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
-      // Reset form or show success message
-    }, 2000);
+      // Navigate to AI Generator page after successful login
+      navigate(redirectTo);
+    }, 1500);
   };
 
   // Handle Google authentication
@@ -33,9 +37,8 @@ function Authform() {
     // Simulate Google OAuth flow
     setTimeout(() => {
       setIsLoading(false);
-      alert("Google authentication successful!");
-      // In real app, you would redirect to Google OAuth
-      // window.location.href = "YOUR_GOOGLE_OAUTH_URL";
+      // Navigate to AI Generator page after successful Google auth
+      navigate(redirectTo);
     }, 1500);
   };
 
@@ -79,6 +82,26 @@ function Authform() {
               <a href="#" onClick={(e) => e.preventDefault()}>
                 Forgot Password?
               </a>
+            </div>
+
+            <div className="redirect-options">
+              <p>After login, go to:</p>
+              <div className="redirect-buttons">
+                <button 
+                  type="button"
+                  className={`redirect-btn ${redirectTo === '/AiGenerator' ? 'active' : ''}`}
+                  onClick={() => setRedirectTo('/AiGenerator')}
+                >
+                  AI Generator
+                </button>
+                <button 
+                  type="button"
+                  className={`redirect-btn ${redirectTo === '/colleges' ? 'active' : ''}`}
+                  onClick={() => setRedirectTo('/colleges')}
+                >
+                  Colleges
+                </button>
+              </div>
             </div>
 
             <button type="submit" className="btn" disabled={isLoading}>
@@ -163,6 +186,26 @@ function Authform() {
                 <i className={`bx ${showRegisterPassword ? "bx-hide" : "bx-show"}`}></i>
               </button>
               <span className="error-message"></span>
+            </div>
+
+            <div className="redirect-options">
+              <p>After registration, go to:</p>
+              <div className="redirect-buttons">
+                <button 
+                  type="button"
+                  className={`redirect-btn ${redirectTo === '/AiGenerator' ? 'active' : ''}`}
+                  onClick={() => setRedirectTo('/AiGenerator')}
+                >
+                  AI Generator
+                </button>
+                <button 
+                  type="button"
+                  className={`redirect-btn ${redirectTo === '/colleges' ? 'active' : ''}`}
+                  onClick={() => setRedirectTo('/colleges')}
+                >
+                  Colleges
+                </button>
+              </div>
             </div>
 
             <button type="submit" className="btn" disabled={isLoading}>

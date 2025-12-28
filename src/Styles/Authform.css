@@ -518,3 +518,69 @@ body {
 .input-box:has(#loginEmail) .toggle-password {
   opacity: 0.5; /* Make it less prominent */
 }
+
+/* Redirect Options Styling */
+.redirect-options {
+  margin: 15px 0;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.redirect-options p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.redirect-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.redirect-btn {
+  flex: 1;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.redirect-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+}
+
+.redirect-btn.active {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 720px) {
+  .redirect-options {
+    padding: 12px;
+  }
+  
+  .redirect-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .redirect-btn {
+    width: 100%;
+  }
+}
