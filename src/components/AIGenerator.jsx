@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaRobot, FaFilePdf, FaDownload, FaSync } from 'react-icons/fa';
 import '../Styles/AIGenerator.css';
+import Header from './Header';
 
 const AIGenerator = () => {
   const [subject, setSubject] = useState('Computer Science');
@@ -27,37 +28,70 @@ const AIGenerator = () => {
           difficulty
         })
       });
-
+  
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
+  
       const data = await response.json();
       
-      // Extract and parse the response
-      const generatedText = data.candidates[0].content.parts[0].text;
+      // NEW LOGIC: Check for the current backend response structure
+      console.log('Backend response structure:', Object.keys(data));
       
-      try {
-        const jsonMatch = generatedText.match(/\{[\s\S]*\}/);
-        const jsonString = jsonMatch ? jsonMatch[0] : generatedText;
-        const parsedData = JSON.parse(jsonString);
-        
+      if (data.success) {
+        // Backend returns: {success: true, title: "...", subject: "...", questions: [...]}
         const paper = {
           id: Date.now(),
-          title: parsedData.title || `${subject} ${examType} Paper`,
-          subject: parsedData.subject || subject,
-          difficulty: parsedData.difficulty || difficulty,
-          questions: parsedData.questions || generateFallbackQuestions(),
-          instructions: parsedData.instructions || 'Answer all questions. Show your work where necessary.',
-          generatedAt: new Date().toLocaleString()
+          title: data.title || `${subject} ${examType} Paper`,
+          subject: data.subject || subject,
+          difficulty: data.difficulty || difficulty,
+          questions: Array.isArray(data.questions) ? data.questions : generateFallbackQuestions(),
+          instructions: data.instructions || 'Answer all questions. Show your work where necessary.',
+          generatedAt: new Date().toLocaleString(),
+          isFallback: false,
+          source: data.source || 'backend'
         };
         
         setGeneratedPaper(paper);
-        
-      } catch (parseError) {
-        console.error('Error parsing response:', parseError);
-        generateFallbackPaper();
+        setError(null);
+        return;
       }
+      
+      // OLD STRUCTURE (for backward compatibility)
+      if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+        let generatedText = '';
+        if (data.candidates[0].content.parts && data.candidates[0].content.parts[0]) {
+          generatedText = data.candidates[0].content.parts[0].text || '';
+        }
+        
+        if (generatedText) {
+          try {
+            const jsonMatch = generatedText.match(/\{[\s\S]*\}/);
+            const jsonString = jsonMatch ? jsonMatch[0] : generatedText;
+            const parsedData = JSON.parse(jsonString);
+            
+            const paper = {
+              id: Date.now(),
+              title: parsedData.title || `${subject} ${examType} Paper`,
+              subject: parsedData.subject || subject,
+              difficulty: parsedData.difficulty || difficulty,
+              questions: Array.isArray(parsedData.questions) ? parsedData.questions : generateFallbackQuestions(),
+              instructions: parsedData.instructions || 'Answer all questions. Show your work where necessary.',
+              generatedAt: new Date().toLocaleString(),
+              isFallback: false
+            };
+            
+            setGeneratedPaper(paper);
+            setError(null);
+            return;
+          } catch (parseError) {
+            console.error('Parse error:', parseError);
+          }
+        }
+      }
+      
+      // If we get here, no valid structure found
+      throw new Error('No valid response from API');
       
     } catch (err) {
       console.error('Error calling backend:', err);
@@ -133,12 +167,10 @@ const AIGenerator = () => {
     setIsGenerating(true);
     setError(null);
     
-    // Try backend first, then fallback
     try {
       await generateWithBackend();
     } catch (err) {
-      console.error('Backend failed, using fallback:', err);
-      generateFallbackPaper();
+      console.error('Generation failed:', err);
     } finally {
       setIsGenerating(false);
     }
@@ -175,20 +207,13 @@ const AIGenerator = () => {
 
   return (
     <section id="ai-generator" className="ai-generator">
+      <Header />
       <div className="container">
         <h2 className="section-title">AI-Powered Question Paper Generator</h2>
         <p className="section-subtitle">
           Create custom practice papers for any subject and exam type in seconds using our advanced AI.
         </p>
         
-        <div className="api-notice">
-          <p>🔧 <strong>Note:</strong> For full AI capabilities, run the backend server.</p>
-          <p className="api-instructions">
-            1. Create a backend server (see instructions in code)<br/>
-            2. Add your Gemini API key to the backend<br/>
-            3. Start both frontend and backend servers
-          </p>
-        </div>
         
         <div className="generator-container">
           <div className="generator-controls card">
