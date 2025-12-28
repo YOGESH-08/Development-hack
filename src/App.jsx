@@ -1,12 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import CollegeList from './components/CollegeList';
-import CollegeDetails from './components/CollegeDetails';
-import Home from "./Pages/Home"
-import Login from "./Pages/Login"
-import AIGenerator from './components/AIGenerator';
-import Profile from './components/Profile';
-import ProfileCompletion from './Pages/ProfileCompletion';
-import EditBio from './Pages/EditBio';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CollegeList from "./components/CollegeList";
+import CollegeDetails from "./components/CollegeDetails";
+import Home from "./Pages/Home";
+import Login from "./Pages/Login";
+import AIGenerator from "./components/AIGenerator";
+import Profile from "./components/Profile";
+import ProfileCompletion from "./Pages/ProfileCompletion";
+import EditBio from "./Pages/EditBio";
 
 function App() {
   return (
@@ -14,14 +14,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/AiGenerator" element={<AIGenerator/>}/>
+        <Route path="/AiGenerator" element={<AIGenerator />} />
         <Route path="/colleges" element={<CollegeList />} />
-        <Route path="/Profile" element={<Profile/>}/>
-        <Route path="/profile-completion" element={<ProfileCompletion/>}/>
-        <Route path="/edit-bio" element={<EditBio/>}/>
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile-completion" element={<ProfileCompletion />} />
+        <Route path="/edit-bio" element={<EditBio />} />
         <Route path="/college/:id" element={<CollegeDetails />} />
       </Routes>
     </Router>
   );
 }
-export default App
+export default App;

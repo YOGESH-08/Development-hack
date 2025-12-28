@@ -48,7 +48,7 @@ export const verifyGoogleAuth = async () => {
 export const submitBasicProfile = async (profileData) => {
   const idToken = await getFreshIdToken();
 
-  const res = await fetch(`${API_BASE_URL}/user/profile/basic`, {
+  const res = await fetch(`${API_BASE_URL}/profile/basic`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
