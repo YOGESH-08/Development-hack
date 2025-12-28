@@ -46,5 +46,692 @@
         "requirements": ["Bachelor's Degree", "GRE Score", "3 Letters of Recommendation"]
       }
     ]
+  },
+
+  {
+    "id": 2,
+    "name": "Indian Institute of Technology Bombay",
+    "location": "Mumbai, Maharashtra",
+    "country": "India",
+    "type": "Public",
+    "ranking": 1,
+    "acceptanceRate": 1,
+    "tuition": 2500,
+    "courses": ["Engineering", "Computer Science", "Electrical", "Mechanical"],
+    "specializations": ["Artificial Intelligence", "Data Science", "Robotics"],
+    "image": "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=600&q=80",
+    "website": "https://www.iitb.ac.in",
+    "description": "One of India's premier engineering institutes known for excellence in research and innovation.",
+    "deadlines": {
+      "fall": "JEE Advanced Result Date"
+    },
+    "applicationFee": 0,
+    "requirements": ["JEE Advanced Rank", "Class 12 Certificate"],
+    "campusLife": {
+      "students": 11000,
+      "faculty": 600,
+      "campusSize": "550 acres",
+      "clubs": 200
+    },
+    "scholarships": ["Merit-based", "Government Scholarships"],
+    "contact": {
+      "email": "admissions@iitb.ac.in",
+      "phone": "+91-22-25722545",
+      "address": "Powai, Mumbai, Maharashtra 400076"
+    },
+    "programs": [
+      {
+        "name": "B.Tech in Computer Science",
+        "duration": "4 years",
+        "fee": 2500,
+        "requirements": ["JEE Advanced Top Rank"]
+      }
+    ]
+  },
+
+  {
+    "id": 3,
+    "name": "Indian Institute of Technology Delhi",
+    "location": "New Delhi",
+    "country": "India",
+    "type": "Public",
+    "ranking": 2,
+    "acceptanceRate": 1.2,
+    "tuition": 2600,
+    "courses": ["Engineering", "Computer Science", "Design"],
+    "specializations": ["Machine Learning", "Cyber Security"],
+    "image": "https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=600&q=80",
+    "website": "https://home.iitd.ac.in",
+    "description": "A leading institute focusing on technology, innovation, and entrepreneurship.",
+    "deadlines": {
+      "fall": "JEE Advanced Result Date"
+    },
+    "applicationFee": 0,
+    "requirements": ["JEE Advanced Rank", "Class 12 Certificate"],
+    "campusLife": {
+      "students": 8500,
+      "faculty": 500,
+      "campusSize": "320 acres",
+      "clubs": 180
+    },
+    "scholarships": ["Merit-based", "Need-based"],
+    "contact": {
+      "email": "admissions@iitd.ac.in",
+      "phone": "+91-11-26591737",
+      "address": "Hauz Khas, New Delhi 110016"
+    },
+    "programs": [
+      {
+        "name": "B.Tech in Electrical Engineering",
+        "duration": "4 years",
+        "fee": 2600,
+        "requirements": ["JEE Advanced Rank"]
+      }
+    ]
+  },
+
+  {
+    "id": 4,
+    "name": "Indian Institute of Science",
+    "location": "Bangalore, Karnataka",
+    "country": "India",
+    "type": "Public",
+    "ranking": 1,
+    "acceptanceRate": 1.5,
+    "tuition": 3000,
+    "courses": ["Science", "Engineering", "Research"],
+    "specializations": ["Physics", "Biotechnology", "Artificial Intelligence"],
+    "image": "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?auto=format&fit=crop&w=600&q=80",
+    "website": "https://iisc.ac.in",
+    "description": "India’s top research institute with global recognition in science and engineering.",
+    "deadlines": {
+      "fall": "KVPY/JEE Advanced/GATE Schedule"
+    },
+    "applicationFee": 0,
+    "requirements": ["JEE Advanced", "KVPY", "GATE"],
+    "campusLife": {
+      "students": 5000,
+      "faculty": 450,
+      "campusSize": "400 acres",
+      "clubs": 120
+    },
+    "scholarships": ["Government Fellowships", "Research Grants"],
+    "contact": {
+      "email": "admissions@iisc.ac.in",
+      "phone": "+91-80-22932211",
+      "address": "CV Raman Road, Bengaluru 560012"
+    },
+    "programs": [
+      {
+        "name": "Bachelor of Science (Research)",
+        "duration": "4 years",
+        "fee": 3000,
+        "requirements": ["JEE Advanced/KVPY"]
+      }
+    ]
   }
+  ,
+{
+  "id": 5,
+  "name": "Indian Institute of Technology Madras",
+  "location": "Chennai, Tamil Nadu",
+  "country": "India",
+  "type": "Public",
+  "ranking": 3,
+  "acceptanceRate": 1.3,
+  "tuition": 2500,
+  "courses": ["Engineering", "Computer Science", "Mechanical", "Aerospace"],
+  "specializations": ["Artificial Intelligence", "Robotics", "Sustainable Energy"],
+  "image": "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=600&q=80",
+  "website": "https://www.iitm.ac.in",
+  "description": "A leading institute excelling in engineering education and interdisciplinary research.",
+  "deadlines": {
+    "fall": "JEE Advanced Result Date"
+  },
+  "applicationFee": 0,
+  "requirements": ["JEE Advanced Rank", "Class 12 Certificate"],
+  "campusLife": {
+    "students": 10000,
+    "faculty": 550,
+    "campusSize": "630 acres",
+    "clubs": 220
+  },
+  "scholarships": ["Merit-based", "Government Scholarships"],
+  "contact": {
+    "email": "admissions@iitm.ac.in",
+    "phone": "+91-44-22578000",
+    "address": "IIT Madras, Chennai 600036"
+  },
+  "programs": [
+    {
+      "name": "B.Tech in Mechanical Engineering",
+      "duration": "4 years",
+      "fee": 2500,
+      "requirements": ["JEE Advanced Rank"]
+    }
+  ]
+},
+{
+  "id": 6,
+  "name": "Birla Institute of Technology and Science, Pilani",
+  "location": "Pilani, Rajasthan",
+  "country": "India",
+  "type": "Private",
+  "ranking": 4,
+  "acceptanceRate": 3,
+  "tuition": 6000,
+  "courses": ["Engineering", "Computer Science", "Electronics"],
+  "specializations": ["Data Science", "Embedded Systems"],
+  "image": "https://images.unsplash.com/photo-1608889175123-8ee3b0f4a1e1?auto=format&fit=crop&w=600&q=80",
+  "website": "https://www.bits-pilani.ac.in",
+  "description": "A premier private institute known for academic rigor and entrepreneurship culture.",
+  "deadlines": {
+    "fall": "BITSAT Schedule"
+  },
+  "applicationFee": 50,
+  "requirements": ["BITSAT Score", "Class 12 Certificate"],
+  "campusLife": {
+    "students": 9000,
+    "faculty": 450,
+    "campusSize": "328 acres",
+    "clubs": 160
+  },
+  "scholarships": ["Merit-based", "Need-based"],
+  "contact": {
+    "email": "admissions@bits-pilani.ac.in",
+    "phone": "+91-1596-245073",
+    "address": "Pilani, Rajasthan 333031"
+  },
+  "programs": [
+    {
+      "name": "B.E. in Computer Science",
+      "duration": "4 years",
+      "fee": 6000,
+      "requirements": ["BITSAT Score"]
+    }
+  ]
+},
+{
+  "id": 7,
+  "name": "National Institute of Technology Tiruchirappalli",
+  "location": "Tiruchirappalli, Tamil Nadu",
+  "country": "India",
+  "type": "Public",
+  "ranking": 5,
+  "acceptanceRate": 2,
+  "tuition": 2000,
+  "courses": ["Engineering", "Computer Science", "Civil", "Electrical"],
+  "specializations": ["Structural Engineering", "Power Systems"],
+  "image": "https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?auto=format&fit=crop&w=600&q=80",
+  "website": "https://www.nitt.edu",
+  "description": "One of India’s top NITs with strong industry connections and academic excellence.",
+  "deadlines": {
+    "fall": "JoSAA Counselling"
+  },
+  "applicationFee": 0,
+  "requirements": ["JEE Main Rank", "Class 12 Certificate"],
+  "campusLife": {
+    "students": 6500,
+    "faculty": 380,
+    "campusSize": "800 acres",
+    "clubs": 140
+  },
+  "scholarships": ["Merit-based", "Government Scholarships"],
+  "contact": {
+    "email": "admissions@nitt.edu",
+    "phone": "+91-431-2503000",
+    "address": "Tiruchirappalli, Tamil Nadu 620015"
+  },
+  "programs": [
+    {
+      "name": "B.Tech in Civil Engineering",
+      "duration": "4 years",
+      "fee": 2000,
+      "requirements": ["JEE Main Rank"]
+    }
+  ]
+},
+{
+  "id": 8,
+  "name": "Vellore Institute of Technology",
+  "location": "Vellore, Tamil Nadu",
+  "country": "India",
+  "type": "Private",
+  "ranking": 6,
+  "acceptanceRate": 10,
+  "tuition": 7000,
+  "courses": ["Engineering", "Computer Science", "Biotechnology"],
+  "specializations": ["Artificial Intelligence", "Cyber Security"],
+  "image": "https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=600&q=80",
+  "website": "https://vit.ac.in",
+  "description": "A leading private university with strong placements and global exposure.",
+  "deadlines": {
+    "fall": "VITEEE Schedule"
+  },
+  "applicationFee": 40,
+  "requirements": ["VITEEE Score", "Class 12 Certificate"],
+  "campusLife": {
+    "students": 35000,
+    "faculty": 1700,
+    "campusSize": "372 acres",
+    "clubs": 300
+  },
+  "scholarships": ["Merit-based", "Need-based"],
+  "contact": {
+    "email": "admissions@vit.ac.in",
+    "phone": "+91-416-2202020",
+    "address": "Vellore, Tamil Nadu 632014"
+  },
+  "programs": [
+    {
+      "name": "B.Tech in Artificial Intelligence",
+      "duration": "4 years",
+      "fee": 7000,
+      "requirements": ["VITEEE Score"]
+    }
+  ]
+}
+,
+{
+  "id": 10,
+  "name": "International Institute of Information Technology Bangalore",
+  "location": "Bangalore, Karnataka",
+  "country": "India",
+  "type": "Public-Private",
+  "ranking": 7,
+  "acceptanceRate": 4,
+  "tuition": 8000,
+  "courses": ["Computer Science", "Electronics", "Data Science"],
+  "specializations": ["Artificial Intelligence", "Machine Learning", "Data Engineering"],
+  "image": "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=600&q=80",
+  "website": "https://www.iiitb.ac.in",
+  "description": "IIIT Bangalore is a premier institute focused on advanced education and research in information technology.",
+  "deadlines": {
+    "fall": "PGEE / JEE Main Schedule"
+  },
+  "applicationFee": 30,
+  "requirements": ["JEE Main / PGEE", "Class 12 Certificate"],
+  "campusLife": {
+    "students": 1200,
+    "faculty": 100,
+    "campusSize": "9 acres",
+    "clubs": 40
+  },
+  "scholarships": ["Merit-based", "Need-based"],
+  "contact": {
+    "email": "admissions@iiitb.ac.in",
+    "phone": "+91-80-41407777",
+    "address": "Electronic City, Bangalore 560100"
+  },
+  "programs": [
+    {
+      "name": "B.Tech in Computer Science",
+      "duration": "4 years",
+      "fee": 8000,
+      "requirements": ["JEE Main / PGEE Rank"]
+    }
+  ]
+},
+{
+  "id": 11,
+  "name": "R.V. College of Engineering",
+  "location": "Bangalore, Karnataka",
+  "country": "India",
+  "type": "Private",
+  "ranking": 8,
+  "acceptanceRate": 5,
+  "tuition": 5000,
+  "courses": ["Engineering", "Computer Science", "Electronics", "Mechanical"],
+  "specializations": ["Artificial Intelligence", "Robotics", "VLSI"],
+  "image": "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?auto=format&fit=crop&w=600&q=80",
+  "website": "https://www.rvce.edu.in",
+  "description": "RVCE is one of Karnataka’s top engineering colleges with excellent placements and academic standards.",
+  "deadlines": {
+    "fall": "KCET / COMEDK Schedule"
+  },
+  "applicationFee": 20,
+  "requirements": ["KCET / COMEDK Rank", "Class 12 Certificate"],
+  "campusLife": {
+    "students": 4500,
+    "faculty": 300,
+    "campusSize": "52 acres",
+    "clubs": 120
+  },
+  "scholarships": ["Merit-based", "Government Scholarships"],
+  "contact": {
+    "email": "principal@rvce.edu.in",
+    "phone": "+91-80-67178000",
+    "address": "Mysore Road, Bangalore 560059"
+  },
+  "programs": [
+    {
+      "name": "B.E. in Computer Science and Engineering",
+      "duration": "4 years",
+      "fee": 5000,
+      "requirements": ["KCET / COMEDK Rank"]
+    }
+  ]
+},
+{
+  "id": 12,
+  "name": "PES University",
+  "location": "Bangalore, Karnataka",
+  "country": "India",
+  "type": "Private",
+  "ranking": 9,
+  "acceptanceRate": 18,
+  "tuition": 6500,
+  "courses": ["Engineering", "Computer Science", "Management"],
+  "specializations": ["Artificial Intelligence", "Data Science", "Cloud Computing"],
+  "image": "https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=600&q=80",
+  "website": "https://www.pes.edu",
+  "description": "PES University is known for its strong industry focus, innovation culture, and competitive placements.",
+  "deadlines": {
+    "fall": "PESSAT Schedule"
+  },
+  "applicationFee": 40,
+  "requirements": ["PESSAT Score", "Class 12 Certificate"],
+  "campusLife": {
+    "students": 12000,
+    "faculty": 700,
+    "campusSize": "52 acres",
+    "clubs": 200
+  },
+  "scholarships": ["Merit-based"],
+  "contact": {
+    "email": "admissions@pes.edu",
+    "phone": "+91-80-26721983",
+    "address": "Banashankari, Bangalore 560050"
+  },
+  "programs": [
+    {
+      "name": "B.Tech in Computer Science and Engineering",
+      "duration": "4 years",
+      "fee": 6500,
+      "requirements": ["PESSAT Rank"]
+    }
+  ]
+},
+{
+  "id": 13,
+  "name": "BMS College of Engineering",
+  "location": "Bangalore, Karnataka",
+  "country": "India",
+  "type": "Private",
+  "ranking": 10,
+  "acceptanceRate": 6,
+  "tuition": 4800,
+  "courses": ["Engineering", "Computer Science", "Civil", "Mechanical"],
+  "specializations": ["Artificial Intelligence", "Construction Technology"],
+  "image": "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=600&q=80",
+  "website": "https://www.bmsce.ac.in",
+  "description": "BMSCE is one of the oldest and most reputed engineering colleges in Bangalore.",
+  "deadlines": {
+    "fall": "KCET / COMEDK Schedule"
+  },
+  "applicationFee": 20,
+  "requirements": ["KCET / COMEDK Rank"],
+  "campusLife": {
+    "students": 6000,
+    "faculty": 350,
+    "campusSize": "15 acres",
+    "clubs": 110
+  },
+  "scholarships": ["Merit-based"],
+  "contact": {
+    "email": "principal@bmsce.ac.in",
+    "phone": "+91-80-26614357",
+    "address": "Basavanagudi, Bangalore 560019"
+  },
+  "programs": [
+    {
+      "name": "B.E. in Information Science",
+      "duration": "4 years",
+      "fee": 4800,
+      "requirements": ["KCET / COMEDK Rank"]
+    }
+  ]
+},
+{
+  "id": 14,
+  "name": "M.S. Ramaiah Institute of Technology",
+  "location": "Bangalore, Karnataka",
+  "country": "India",
+  "type": "Private",
+  "ranking": 11,
+  "acceptanceRate": 7,
+  "tuition": 4700,
+  "courses": ["Engineering", "Computer Science", "Electronics"],
+  "specializations": ["Artificial Intelligence", "Internet of Things"],
+  "image": "https://images.unsplash.com/photo-1608889175123-8ee3b0f4a1e1?auto=format&fit=crop&w=600&q=80",
+  "website": "https://www.msrit.edu",
+  "description": "MSRIT is a top Bangalore engineering college with strong academic reputation and placements.",
+  "deadlines": {
+    "fall": "KCET / COMEDK Schedule"
+  },
+  "applicationFee": 20,
+  "requirements": ["KCET / COMEDK Rank"],
+  "campusLife": {
+    "students": 7000,
+    "faculty": 400,
+    "campusSize": "25 acres",
+    "clubs": 130
+  },
+  "scholarships": ["Merit-based", "Government Scholarships"],
+  "contact": {
+    "email": "admissions@msrit.edu",
+    "phone": "+91-80-23600822",
+    "address": "MSR Nagar, Bangalore 560054"
+  },
+  "programs": [
+    {
+      "name": "B.E. in Computer Science and Engineering",
+      "duration": "4 years",
+      "fee": 4700,
+      "requirements": ["KCET / COMEDK Rank"]
+    }
+  ]
+}
+,
+{
+  "id": 15,
+  "name": "Anna University",
+  "location": "Chennai, Tamil Nadu",
+  "country": "India",
+  "type": "Public",
+  "ranking": 7,
+  "acceptanceRate": 6,
+  "tuition": 2000,
+  "courses": ["Engineering", "Computer Science", "Civil", "Mechanical"],
+  "specializations": ["Artificial Intelligence", "Structural Engineering"],
+  "image": "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=600&q=80",
+  "website": "https://www.annauniv.edu",
+  "description": "Anna University is a premier public technical university in Tamil Nadu with strong academic and research excellence.",
+  "deadlines": {
+    "fall": "TNEA Counselling Schedule"
+  },
+  "applicationFee": 10,
+  "requirements": ["TNEA Rank", "Class 12 Certificate"],
+  "campusLife": {
+    "students": 18000,
+    "faculty": 900,
+    "campusSize": "185 acres",
+    "clubs": 250
+  },
+  "scholarships": ["Merit-based", "Government Scholarships"],
+  "contact": {
+    "email": "admissions@annauniv.edu",
+    "phone": "+91-44-22357780",
+    "address": "Guindy, Chennai 600025"
+  },
+  "programs": [
+    {
+      "name": "B.E. in Computer Science and Engineering",
+      "duration": "4 years",
+      "fee": 2000,
+      "requirements": ["TNEA Rank"]
+    }
+  ]
+},
+{
+  "id": 16,
+  "name": "National Institute of Technology Tiruchirappalli",
+  "location": "Tiruchirappalli, Tamil Nadu",
+  "country": "India",
+  "type": "Public",
+  "ranking": 5,
+  "acceptanceRate": 2,
+  "tuition": 2000,
+  "courses": ["Engineering", "Computer Science", "Electrical", "Mechanical"],
+  "specializations": ["Power Systems", "Robotics"],
+  "image": "https://images.unsplash.com/photo-1598970434795-0c54fe7c0642?auto=format&fit=crop&w=600&q=80",
+  "website": "https://www.nitt.edu",
+  "description": "NIT Trichy is among India’s top NITs with excellent placements and research culture.",
+  "deadlines": {
+    "fall": "JoSAA Counselling"
+  },
+  "applicationFee": 0,
+  "requirements": ["JEE Main Rank"],
+  "campusLife": {
+    "students": 6500,
+    "faculty": 380,
+    "campusSize": "800 acres",
+    "clubs": 140
+  },
+  "scholarships": ["Merit-based", "Government Scholarships"],
+  "contact": {
+    "email": "admissions@nitt.edu",
+    "phone": "+91-431-2503000",
+    "address": "Tiruchirappalli, Tamil Nadu 620015"
+  },
+  "programs": [
+    {
+      "name": "B.Tech in Electrical and Electronics Engineering",
+      "duration": "4 years",
+      "fee": 2000,
+      "requirements": ["JEE Main Rank"]
+    }
+  ]
+},
+{
+  "id": 17,
+  "name": "SRM Institute of Science and Technology",
+  "location": "Chennai, Tamil Nadu",
+  "country": "India",
+  "type": "Private",
+  "ranking": 12,
+  "acceptanceRate": 15,
+  "tuition": 8000,
+  "courses": ["Engineering", "Computer Science", "Medical", "Management"],
+  "specializations": ["Artificial Intelligence", "Cyber Security", "Cloud Computing"],
+  "image": "https://images.unsplash.com/photo-1608889175123-8ee3b0f4a1e1?auto=format&fit=crop&w=600&q=80",
+  "website": "https://www.srmist.edu.in",
+  "description": "SRM University is a leading private university with global collaborations and strong industry exposure.",
+  "deadlines": {
+    "fall": "SRMJEEE Schedule"
+  },
+  "applicationFee": 60,
+  "requirements": ["SRMJEEE Score", "Class 12 Certificate"],
+  "campusLife": {
+    "students": 40000,
+    "faculty": 2000,
+    "campusSize": "250 acres",
+    "clubs": 350
+  },
+  "scholarships": ["Merit-based", "Need-based"],
+  "contact": {
+    "email": "admissions@srmist.edu.in",
+    "phone": "+91-44-27417000",
+    "address": "Kattankulathur, Chennai 603203"
+  },
+  "programs": [
+    {
+      "name": "B.Tech in Computer Science and Engineering",
+      "duration": "4 years",
+      "fee": 8000,
+      "requirements": ["SRMJEEE Rank"]
+    }
+  ]
+},
+{
+  "id": 18,
+  "name": "Amrita Vishwa Vidyapeetham",
+  "location": "Coimbatore, Tamil Nadu",
+  "country": "India",
+  "type": "Private",
+  "ranking": 13,
+  "acceptanceRate": 12,
+  "tuition": 7500,
+  "courses": ["Engineering", "Computer Science", "Healthcare"],
+  "specializations": ["Artificial Intelligence", "Biomedical Engineering"],
+  "image": "https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=600&q=80",
+  "website": "https://www.amrita.edu",
+  "description": "Amrita University is known for strong research, values-based education, and global rankings.",
+  "deadlines": {
+    "fall": "AEEE Schedule"
+  },
+  "applicationFee": 50,
+  "requirements": ["AEEE Score", "Class 12 Certificate"],
+  "campusLife": {
+    "students": 20000,
+    "faculty": 1200,
+    "campusSize": "400 acres",
+    "clubs": 220
+  },
+  "scholarships": ["Merit-based", "Need-based"],
+  "contact": {
+    "email": "admissions@amrita.edu",
+    "phone": "+91-422-2685000",
+    "address": "Coimbatore, Tamil Nadu 641112"
+  },
+  "programs": [
+    {
+      "name": "B.Tech in Artificial Intelligence",
+      "duration": "4 years",
+      "fee": 7500,
+      "requirements": ["AEEE Rank"]
+    }
+  ]
+},
+{
+  "id": 19,
+  "name": "PSG College of Technology",
+  "location": "Coimbatore, Tamil Nadu",
+  "country": "India",
+  "type": "Private",
+  "ranking": 14,
+  "acceptanceRate": 4,
+  "tuition": 4500,
+  "courses": ["Engineering", "Computer Science", "Mechanical"],
+  "specializations": ["Manufacturing Technology", "Artificial Intelligence"],
+  "image": "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=600&q=80",
+  "website": "https://www.psgtech.edu",
+  "description": "PSG Tech is a top autonomous engineering college with strong academic rigor and placements.",
+  "deadlines": {
+    "fall": "TNEA Counselling"
+  },
+  "applicationFee": 10,
+  "requirements": ["TNEA Rank"],
+  "campusLife": {
+    "students": 8000,
+    "faculty": 450,
+    "campusSize": "45 acres",
+    "clubs": 150
+  },
+  "scholarships": ["Merit-based"],
+  "contact": {
+    "email": "principal@psgtech.edu",
+    "phone": "+91-422-2572177",
+    "address": "Peelamedu, Coimbatore 641004"
+  },
+  "programs": [
+    {
+      "name": "B.E. in Mechanical Engineering",
+      "duration": "4 years",
+      "fee": 4500,
+      "requirements": ["TNEA Rank"]
+    }
+  ]
+}
+
 ]
